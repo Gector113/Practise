@@ -93,11 +93,11 @@ def get_word_score(word, n):
     """
     
     word = word.lower()
-    letter_sum = 0
+    x = 0
     for i in word:
-        letter_sum = letter_sum + SCRABBLE_LETTER_VALUES[i]
+        x = x + SCRABBLE_LETTER_VALUES[i]
     length = len(word)
-    return letter_sum * max(1, 7 * length - 3 * (n - length))
+    return x * max(1, 7 * length - 3 * (n - length))
 
 #
 # Make sure you understand how this function works and what it does!
@@ -115,10 +115,10 @@ def display_hand(hand):
     hand: dictionary (string -> int)
     """
     
-    hand_line = ''
+    hand_0 = ''
     for i in hand.keys():
-        hand_line += (i + ' ') * hand[i]
-    return hand_line                             
+        hand_0 = hand_0 + (i + ' ') * hand[i]
+    return hand_0                             
 
 #
 # Make sure you understand how this function works and what it does!
@@ -139,15 +139,15 @@ def deal_hand(n):
     """
     
     hand={}
-    num_vowels = int(math.ceil(n / 3))
+    x = int(math.ceil(n / 3))
 
-    for i in range(num_vowels):
-        x = random.choice(VOWELS)
-        hand[x] = hand.get(x, 0) + 1
+    for i in range(x):
+        y = random.choice(VOWELS)
+        hand[y] = hand.get(y, 0) + 1
     
-    for i in range(num_vowels, n):    
-        x = random.choice(CONSONANTS)
-        hand[x] = hand.get(x, 0) + 1
+    for i in range(x, n):    
+        y = random.choice(CONSONANTS)
+        hand[y] = hand.get(y, 0) + 1
     return hand
 
 #
@@ -206,8 +206,8 @@ def is_valid_word(word, hand, word_list):
             return False
     elif word not in word_list:
         return False
-    sw = set(word)
-    for j in sw:
+    x = set(word)
+    for j in x:
         if hand.get(j,0) < word.count(j):
             return False
     return True
@@ -347,13 +347,13 @@ def substitute_hand(hand, letter):
     """
     
     hand_2 = hand.copy()
-    m = ''
+    x = ''
     for i in string.ascii_lowercase:
         if i not in hand_2.keys():
-            m = m + i
+            x = x + i
     hand_3 = hand_2[letter]
     hand_2[letter] = 0
-    hand_2[random.choice(m)] = hand_3
+    hand_2[random.choice(x)] = hand_3
     return hand_2
        
     
